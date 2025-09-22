@@ -1,5 +1,5 @@
 from src.repository import PLanguageRepository
-from src.schemas import LanguageResponse
+from src.schemas import LanguageResponse, CreateLanguageRequest
 from src.services import ServiceResult
 from src.services.mappers import PLanguageMapper
 
@@ -15,9 +15,9 @@ class PLanguageService:
         except Exception as e:
             return ServiceResult.failure(f'Error fetching languages: {str(e)}', status_code=500)
 
-    async def add_language(self, name: str) -> ServiceResult[LanguageResponse]:
+    async def add_language(self, request: CreateLanguageRequest) -> ServiceResult[LanguageResponse]:
         try:
-            new_language = await self._repository.add_language(name)
+            new_language = await self._repository.add_language(request.name, request.description, request.picture, request.level, request.popularity)
             return ServiceResult.success(PLanguageMapper.to_single(new_language))
         except Exception as e:
             return ServiceResult.failure(f'Error adding language: {str(e)}', status_code=400)

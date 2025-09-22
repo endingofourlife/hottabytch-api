@@ -17,7 +17,6 @@ class UserMapper:
             user=UserBase(
                 user_id=user.user_id,
                 first_name=user.first_name,
-                username=user.username,
                 streak=user.streak,
                 xp=user.xp,
                 active_language=active_language,
@@ -40,7 +39,6 @@ class UserMapper:
             user=UserBase(
                 user_id=user['user_id'],
                 first_name=user['first_name'],
-                username=user['username'],
                 streak=user['streak'],
                 xp=user['xp'],
                 active_language=active_language,

@@ -7,7 +7,7 @@ class StartLessonRequest(BaseModel):
 
 class CheckLessonAnswerRequest(BaseModel):
     session_id: str
-    question_id: str
+    question_id: int
     answer_id: int
 
 class LessonCreateRequest(BaseModel):

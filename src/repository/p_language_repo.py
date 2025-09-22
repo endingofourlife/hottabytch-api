@@ -19,9 +19,9 @@ class PLanguageRepository:
         result = await self.db_session.execute(query)
         return result.scalars().all()
 
-    async def add_language(self, name: str) -> PLanguageModel:
+    async def add_language(self, name: str, description: str, picture: str, level: int, popularity: int) -> PLanguageModel:
         try:
-            new_language = PLanguageModel(name=name)
+            new_language = PLanguageModel(name=name, description=description, picture=picture, level=level, popularity=popularity)
             self.db_session.add(new_language)
             await self.db_session.commit()
             await self.db_session.refresh(new_language)

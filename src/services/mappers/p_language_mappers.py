@@ -9,7 +9,11 @@ class PLanguageMapper:
     def to_single(model: PLanguageModel) -> LanguageResponse:
         return LanguageResponse(
             id=model.language_id,
-            name=model.name
+            name=model.name,
+            description=model.description,
+            picture=model.picture,
+            level=model.level,
+            popularity=model.popularity
         )
 
     @staticmethod

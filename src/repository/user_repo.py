@@ -18,12 +18,11 @@ class UserRepository:
         result = await self.db_session.execute(query)
         return result.scalars().first()
 
-    async def create_user(self, user_id: int, first_name: str, username: str or None, timezone: str or None) -> UserModel:
+    async def create_user(self, user_id: int, first_name: str, timezone: str or None) -> UserModel:
         try:
             new_user = UserModel(
                 user_id=user_id,
                 first_name=first_name,
-                username=username,
                 timezone=timezone
             )
             self.db_session.add(new_user)

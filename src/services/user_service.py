@@ -43,7 +43,6 @@ class UserService:
         user_data = {
             'user_id': user.user_id,
             'first_name': user.first_name,
-            'username': user.username,
             'streak': user.streak,
             'xp': user.xp,
             'timezone': user.timezone,
@@ -112,7 +111,6 @@ class UserService:
             new_user = await self._repository.create_user(
                 user_id=request.user_id,
                 first_name=request.first_name,
-                username=request.username,
                 timezone= request.timezone
             )
             logger.info(f"New user created: {new_user.user_id}")

@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class QuestionAnswer(BaseModel):
     answer_id: int
-    text: str
+    answer_text: str
 
 
 class QuestionResponse(BaseModel):

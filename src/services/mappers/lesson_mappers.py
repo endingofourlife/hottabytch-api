@@ -17,7 +17,7 @@ class LessonsMapper:
                     answers=[
                         AnswerResponse(
                             answer_id=answer.get("answer_id"),
-                            question_text=answer.get("answer_text")
+                            answer_text=answer.get("answer_text")
                         )
                         for answer in question.get("answers")
                     ]
@@ -37,7 +37,7 @@ class LessonsMapper:
                     answers=[
                         AnswerResponse(
                             answer_id=answer.answer_id,
-                            question_text=answer.answer_text
+                            answer_text=answer.answer_text
                         )
                         for answer in question.answers
                     ]
@@ -90,7 +90,7 @@ class LessonsMapper:
         }
 
     @staticmethod
-    def to_answer_check_response(question_id: str, is_correct: bool) -> CheckLessonAnswerResponse:
+    def to_answer_check_response(question_id: int, is_correct: bool) -> CheckLessonAnswerResponse:
         return CheckLessonAnswerResponse(
             question_id=question_id,
             is_correct=is_correct

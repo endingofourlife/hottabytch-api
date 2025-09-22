@@ -34,6 +34,8 @@ class LessonsService:
             return 10
 
     def _get_correct_answers(self, lesson: LessonModel) -> dict[int, int]:
+        print(f"Getting correct answers for lesson: {lesson.lesson_id}. Questions count: {len(lesson.questions)}\n"
+              f"Questions: {[q.question_id for q in lesson.questions]}. Correct answer: {[q.answers[0].answer_id for q in lesson.questions if q.answers]}")
         return {
             question.question_id: next((a.answer_id for a in question.answers if a.is_correct), None)
             for question in lesson.questions
@@ -49,7 +51,9 @@ class LessonsService:
 
     async def _cache_lesson(self, lesson_id: int, lesson: LessonModel):
         correct_answers = self._get_correct_answers(lesson)
+        print(f'Cache lesson. Got correct answers: {correct_answers}')
         lesson_data = LessonsMapper.to_lesson_cache(lesson, correct_answers)
+        print(f'Caching lesson data: {lesson_data}')
         await self._redis_client.set(
             f"lesson:{lesson_id}:data",
             json.dumps(lesson_data),
@@ -127,9 +131,9 @@ class LessonsService:
                 await self._redis_client.delete(f'session:{request.session_id}')
                 return ServiceResult.failure('Test time has expired', status_code=403)
 
-            correct_answer_id = session_data.get('correct_answers').get(request.question_id)
+            correct_answer_id = session_data.get('correct_answers').get(str(request.question_id))
             is_correct = correct_answer_id == request.answer_id
-
+            print(f"User answer: {request.answer_id} Question: {request.question_id} Correct answer: {correct_answer_id} Is correct: {is_correct}")
             if is_correct:
                 session_data['user_answers'].append(request.question_id)
             else:

@@ -9,7 +9,6 @@ class ActiveLanguage(BaseModel):
 class UserBase(BaseModel):
     user_id: int
     first_name: str
-    username: str | None = None
     streak: int
     xp: int
     active_language: ActiveLanguage | None = None
@@ -21,7 +20,6 @@ class UserBase(BaseModel):
 class UserAuthRequest(BaseModel):
     user_id: int
     first_name: str
-    username: str | None = None
     timezone: str | None = None
     hash: str
 

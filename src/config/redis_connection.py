@@ -26,6 +26,14 @@ async def ping_redis_server():
         logger.error(f"Error connecting to Redis server: {e}")
         raise ConnectionError("Could not connect to Redis server") from e
 
+async def flush_redis_cache():
+    try:
+        await redis_client.flushdb()
+        logger.info("Redis cache cleared successfully")
+    except Exception as e:
+        logger.error(f"Error clearing Redis cache: {e}")
+        raise RuntimeError("Could not clear Redis cache") from e
+
 def get_redis_client() -> aioredis.Redis:
     """
     Returns the Redis client instance.

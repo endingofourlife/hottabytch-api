@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 class AnswerResponse(BaseModel):
     answer_id: int
-    question_text: str
+    answer_text: str
 
 class QuestionResponse(BaseModel):
     text: str
@@ -14,7 +14,7 @@ class StartLessonResponse(BaseModel):
     questions: list[QuestionResponse]
 
 class CheckLessonAnswerResponse(BaseModel):
-    question_id: str
+    question_id: int
     is_correct: bool
 
 class LessonResultResponse(BaseModel):
