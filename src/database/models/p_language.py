@@ -12,8 +12,8 @@ class PLanguageModel(Base):
     description: Mapped[str] = mapped_column(String(200), nullable=False, server_default='')
     # URL of the programming language picture
     picture: Mapped[str] = mapped_column(String(100), nullable=False, server_default='')
-    # Level of the programming language, e.g., 0 for beginner, 1 for intermediate, 2 for professional.
-    level: Mapped[int] = mapped_column(INTEGER, nullable=False, default=0, server_default='0')
+    # Level of the programming language. e.g. Beginner, Intermediate, Advanced
+    level: Mapped[str] = mapped_column(String(20), nullable=False, default="Beginner", server_default='Beginner')
     # Popularity of the programming language. From 0 to 10. e.g. 3/10, 9/10, etc.
     popularity: Mapped[int] = mapped_column(INTEGER, nullable=False, default=0, server_default='0')
 

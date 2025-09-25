@@ -6,7 +6,7 @@ class CreateLanguageRequest(BaseModel):
     name: str
     description: str
     picture: str
-    level: int
+    level: str
     popularity: int
 
 # Responses
@@ -15,5 +15,5 @@ class LanguageResponse(BaseModel):
     name: str
     description: str
     picture: str
-    level: int
+    level: str
     popularity: int
